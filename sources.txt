@@ -29,11 +29,12 @@ https://www.parliament.uk
 //    - Description:
 Parliament provides a list register of interests for each member.
 //    - Collection:
-
+The APIs are used to retrieve current and historical registers of interests for all members.
 Care has to be taken here to update, rather than delete, past records.
 //    - Data Format:
-
+CSV
 //    - Usage:
+The register of interests is used throughout for things like outside earnings, paid travel, landlord income, gifts and hospitality.
 
 // 3. Parliament Register of Commons Votes API
 // - Source:
