@@ -1,0 +1,51 @@
+// This file contains notes on the data sources used in the project.
+
+/// Data Sources:
+
+/// 1. IPSA
+//    - Source:
+https://www.ipsa.org.uk
+//    - Description:
+The Independent Parliamentary Standards Authority (IPSA) provides data on MPs' expenses and allowances.
+//    - Collection:
+Data is available programmatically as CSV for each member using their numeric ID, e.g.
+https://www.theipsa.org.uk/api/mp/expenses?mpId=4514 for Keir Starmer.
+However, I found that this information seemed to be less up-to-date than what appeared on the webpage.
+As a result, I used a web scrape to populate with the information I need.
+<<<CHECK FOR REFACTOR BEFORE PUBLISHING>>>
+The function get_mps_ipsa_data in expenses_web_scrape.py handles this for all 650 current MPs.
+//    - Data Format:
+JSON
+//    - Usage:
+The primary function of IPSA is to provide members' business expenses and staffing costs.
+I also use it as a source for key biographical information, such as name, current party and gender.
+Throughout this project I use the numeric ID for MPs given by IPSA.
+This is the same numerical ID used by parliament.uk on the register of interests.
+
+
+// 2. Parliament Register of Interests
+//    - Source:
+https://www.parliament.uk
+//    - Description:
+Parliament provides a list register of interests for each member.
+//    - Collection:
+
+Care has to be taken here to update, rather than delete, past records.
+//    - Data Format:
+
+//    - Usage:
+
+// 3. Parliament Register of Commons Votes API
+// - Source:
+https://commonsvotes-api.parliament.uk
+// - Description:
+The Commons Votes API provides data on votes in the House of Commons.
+// - Collection:
+The API is used to retrieve data on one vote at a time, using the vote ID.
+This is done at user request, as it's hard to see a use case for mass downloads.
+// - Data Format:
+JSON raw and .txt of members' IDs based on voting direction.
+// - Usage:
+Primarily used to filter based on voting direction, e.g. to display all MPs who voted 'Aye' on a particular vote.
+
+

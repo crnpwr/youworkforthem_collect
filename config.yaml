@@ -1,0 +1,32 @@
+data_directories:
+  raw_data: data_raw/
+  processed_data: data/
+  archive: data_archive/
+  interests: data_raw/interests/
+  votes: data_raw/votes/
+  expenses: data_raw/expenses/
+
+key_files:
+  ipsa_json: data_raw/expenses/mp_data_ipsa_filtered.json
+  donor_categories: analyse_data/donor_categories.csv
+  last_updates: acquire_data/last_updates.json
+
+interests_data:
+  1_earnings: data_raw/interests/PublishedInterest-Category_1.csv
+  1.1_adhoc: data_raw/interests/PublishedInterest-Category_1.1.csv
+  1.2_ongoing: data_raw/interests/PublishedInterest-Category_1.2.csv
+  2_donations: data_raw/interests/PublishedInterest-Category_2.csv
+  3_gifts_hospitality: data_raw/interests/PublishedInterest-Category_3.csv
+  4_trips: data_raw/interests/PublishedInterest-Category_4.csv
+  5_foreign_gifts: data_raw/interests/PublishedInterest-Category_5.csv
+  6_property: data_raw/interests/PublishedInterest-Category_6.csv
+  7_shareholdings: data_raw/interests/PublishedInterest-Category_7.csv
+  8_misc: data_raw/interests/PublishedInterest-Category_8.csv
+  9_family_employed: data_raw/interests/PublishedInterest-Category_9.csv
+  10_family_lobbyists: data_raw/interests/PublishedInterest-Category_10.csv
+
+output_files:
+  data_reference: data/data_ref.json
+  mp_data_summary: data/mp_data_summary.csv
+
+log_file: logs/scrapers.log
