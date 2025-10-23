@@ -1,8 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import json
-from scrape_logging import setup_logger
-from scrape_logging import update_last_updates
+from .scrape_logging import setup_logger, update_last_updates
 
 logger = setup_logger()
 

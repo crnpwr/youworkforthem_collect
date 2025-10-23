@@ -1,8 +1,8 @@
 import pandas as pd
 import requests
 import zipfile
-from scrape_logging import setup_logger
-from scrape_logging import update_last_updates
+from .scrape_logging import setup_logger, update_last_updates
+import os
 
 logger = setup_logger()
 

@@ -248,15 +248,8 @@ def update_last_updated(last_updates_file="acquire_data/last_updates.json", data
         json.dump(ref_data, f, indent=2)
 
 
-if __name__ == "__main__":
-    # Run from mp_collect directory
-    import os
-
-    # Set the working directory to the parent directory of the parent directory
-    os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-    logging.basicConfig(level=logging.INFO)
-    ipsa_json_file = "data_raw/expenses/mp_data_ipsa_filtered.json"
+def collate_data(ipsa_json_file="data_raw/expenses/mp_data_ipsa_filtered.json",
+                 output_csv_file="data/mp_data_summary.csv"):
 
     # Call the function to collate basic MP information
     mps_basic_info = ipsa_basic(ipsa_json_file)
@@ -265,20 +258,34 @@ if __name__ == "__main__":
 
     # Collate vote data for specific votes
     votes = [
-        ("1841", ["noes"]), # Winter Fuel Payment
-        ("1905", ["noes"]), # Renters Rights Bill
-        ("2074", ["ayes"]), # UC and PIP Bill Second Reading
-        ("2078", ["ayes"]), # Terrorism Act Amendment, Proscribing Palestine Action
-        ("2083", ["noes"]), # Football Governance Bill
-             ]
+        ("1841", ["noes"]),  # Winter Fuel Payment
+        ("1905", ["noes"]),  # Renters Rights Bill
+        ("2074", ["ayes"]),  # UC and PIP Bill Second Reading
+        ("2078", ["ayes"]),  # Terrorism Act Amendment, Proscribing Palestine Action
+        ("2083", ["noes"]),  # Football Governance Bill
+    ]
     for vote_id, interesting_values in votes:
         mps_basic_info = collate_vote_data(mps_basic_info, vote_id, interesting_values)
 
-    mps_basic_info = collate_landlord_info(mps_basic_info, property_csv="data_raw/interests/PublishedInterest-Category_6.csv")
+    mps_basic_info = collate_landlord_info(mps_basic_info,
+                                           property_csv="data_raw/interests/PublishedInterest-Category_6.csv")
 
     # Save the DataFrame to a CSV file
-    output_csv_file = "data/mp_data_summary.csv"
     mps_basic_info.to_csv(output_csv_file, index_label="mp_id")
     update_last_updated()
 
-    logging.info(f"Basic MP information collated and saved to {output_csv_file}.")
+if __name__ == "__main__":
+    # Run from mp_collect directory
+    import os
+
+    # Set the working directory to the parent directory of the parent directory
+    os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+    logging.basicConfig(level=logging.INFO)
+
+    ipsa_json = "data_raw/expenses/mp_data_ipsa_filtered.json"
+    output_csv = "data/mp_data_summary.csv"
+
+    collate_data(ipsa_json_file = ipsa_json, output_csv_file = output_csv)
+
+    logging.info(f"Basic MP information collated and saved to {output_csv}.")
